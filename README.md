@@ -1,19 +1,22 @@
-<p align="center">
-  <img width="250" height="250" src="https://github.com/robertcorponoi/graphics/blob/master/electron-vue3-ts-quick-start/logo/logo.png?raw=true">
-</p>
+# PTZ Camera Face Tracker
 
-<h1 align="center">Electron Vue3 Typescript Quick Start</h1>
+## Description
 
-<p align="center">Easy to use template for creating an app with Electron, Vue3, and Typescript<p>
+Do you have an off-brand PTZ camera that you use for production of content? Do you have a presenter who likes to walk back and forth on a stage, far enough so that you have to get up and use the joystick to reposition the camera, only for the presenter to immediately return to his position? Do you wish to automate a rather tedious task of doing your job?
 
-This is a vue3 application created with the [vue-cli](https://cli.vuejs.org/) with Electron added on.
+I felt the same way! When my production upgraded from old Sony cameras to shiny new *wish.com* PTZ cameras, moving those same cameras suddenly became my job! Hey! "I already do enough on the switchboard, don't give me more to do!" In any case, I discovered that the cameras exposed a REST Api for issuing move commands and suddenly the idea became clear. Combine the RTSP stream, a machine-learning algorithm for tracking faces, and ONVIF Profile S support, perhaps I could indeed automate moving a camera to follow someone who refuses to stay in one spot for thirty minutes.
 
-## **Table of Contents**
+The endgame is to build a progressive web application that can be installed on any OS that is able to work offline, without a connection to the internet. By moving the processing code onto the client side, I also don't have to fund any infrastructure to get this app to work. Meaning that I can provide this app, free of charge to you guys.
 
-- [Features](#features)
-- [Scripts](#scripts)
+*This is also my first real application, please be nice! Thanks!!!*
 
-## **Features**
+~ Michael Mesquita
+
+## Dependencies
+
+This project was made using this template for Electron.js, Vue 3, and Typescript development. [robertcorponoi/electron-vue3-ts-quick-start](https://github.com/robertcorponoi/electron-vue3-ts-quick-start)
+
+That template includes these packages for development.
 
 - [Vue3](https://v3.vuejs.org/)
 - [Babel](https://babeljs.io/)
@@ -23,6 +26,10 @@ This is a vue3 application created with the [vue-cli](https://cli.vuejs.org/) wi
 - [electron-reloader](https://github.com/sindresorhus/electron-reloader) to reload the app on changes
 - [electron-builder](https://github.com/electron-userland/electron-builder) for packaging and building your Electron app.
 - [dotenv](https://github.com/motdotla/dotenv) to load environment variables
+
+For control of the ONVIF PTZ cameras, the ONVIF library was used.
+
+- [agsh/onvif](https://github.com/agsh/onvif)
 
 ## **Scripts**
 
@@ -37,17 +44,3 @@ This is a vue3 application created with the [vue-cli](https://cli.vuejs.org/) wi
 - `npm run dist:linux`: Runs `npm run build:prod` and then calls electron-builder to package the Electron app for a Linux environment.
 - `npm run dist:windows`: Runs `npm run build:prod` and then calls electron-builder to package the Electron app for Windows.
 - `npm run dist:all`: Runs `npm run build:prod` and then calls electron-builder to package the Electron for OSX, Linux, and Windows.
-
-## **Instructions**
-
-1. Clone the repository
-2. Run `npm install` to install the dependencies needed.
-
-To develop, you need to follow the steps below every time you begin working on it:
-
-1. First you want to run `npm run build:dev:watch` to build the `dist` directory and watch for changes to your Vue templates/components.
-2. Run `npm run start` to start Electron.
-
-Now, with both of these running, whenever you make a change to the files Electron uses or the Vue files, the Electron window will update automatically.
-
-**Note:** The electron files are not Typescript so that they can be reloaded with electron-reloader.

@@ -1,8 +1,27 @@
 {
-  "name": "electron-vue3-ts-quick-start",
+  "name": "ptz-camera-facetracker",
   "version": "0.1.0",
-  "description": "Electron Vue3 Typscript Quick Start",
-  "author": "You",
+  "description": "A electron app, powered by Vue and Typescript that enables any ONVIF PTZ Camera to track a subject using their face.",
+  "author": "Michael Mesquita <mannolaur@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Midlight25/ptz-camera-facetracker"
+  },
+  "keywords": [
+    "vue",
+    "vue 3",
+    "face tracking",
+    "ptz camera",
+    "nodejs",
+    "electron",
+    "electron js",
+    "onvif"
+  ],
+  "bugs": {
+    "url": "https://github.com/Midlight25/ptz-camera-facetracker/issues"
+  },
+  "homepage": "https://github.com/Midlight25/ptz-camera-facetracker/README.md",
   "private": true,
   "main": "electron/main.js",
   "scripts": {
@@ -21,9 +40,7 @@
   "dependencies": {
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
-    "vue": "^3.0.0",
-    "vue-class-component": "^8.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
@@ -34,7 +51,6 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
     "@vue/cli-plugin-unit-mocha": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-typescript": "^5.0.2",
