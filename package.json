@@ -35,7 +35,8 @@
     "dist:mac": "npm run build:prod && electron-builder --mac",
     "dist:linux": "npm run build:prod && electron-builder --linux",
     "dist:windows": "npm run build:prod && electron-builder --windows",
-    "dist:all": "npm run build:prod && electron-builder --mac --linux --windows"
+    "dist:all": "npm run build:prod && electron-builder --mac --linux --windows",
+    "serve": "concurrently --kill-others \"npm run build:dev:watch\" \"npm run start\""
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -43,7 +44,7 @@
     "onvif": "github:agsh/onvif",
     "pug": "^3.0.2",
     "pug-plain-loader": "^1.1.0",
-    "vue": "^3.0.0"
+    "vue": "^3.2.4"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
@@ -59,6 +60,7 @@
     "@vue/eslint-config-typescript": "^5.0.2",
     "@vue/test-utils": "^2.0.0-0",
     "chai": "^4.1.2",
+    "concurrently": "^6.2.1",
     "electron": "^11.0.3",
     "electron-builder": "^22.9.1",
     "electron-reloader": "^1.1.0",
