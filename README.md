@@ -44,3 +44,4 @@ For control of the ONVIF PTZ cameras, the ONVIF library was used.
 - `npm run dist:linux`: Runs `npm run build:prod` and then calls electron-builder to package the Electron app for a Linux environment.
 - `npm run dist:windows`: Runs `npm run build:prod` and then calls electron-builder to package the Electron app for Windows.
 - `npm run dist:all`: Runs `npm run build:prod` and then calls electron-builder to package the Electron for OSX, Linux, and Windows.
+- `npm run serve`: Runs `npm run build:dev:watch` and `npm run start` concurrently to initiate the development environment.
