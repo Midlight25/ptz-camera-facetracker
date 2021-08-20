@@ -5,7 +5,12 @@
 
   form(@submit.prevent)
     label(for="camera-ip") PTZ Camera IP
-    input(type="text", name="camera-ip", placeholder="192.168.0.1", v-model="cameraIP")
+    input(
+      type="text",
+      name="camera-ip",
+      placeholder="192.168.0.1",
+      v-model="cameraIP"
+    )
 
     button(@click="connectToCamera") Connect
 
@@ -15,7 +20,6 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { Cam } from "onvif";
-
 
 export default defineComponent({
   name: "App",
@@ -30,30 +34,39 @@ export default defineComponent({
       console.log("Connecting to Camera");
 
       // Instantiate a camera object and get it's URI for accessing the media.
-      new Cam({
-        hostname: cameraIP.value,
-        username: "",
-        password: "",
-      }, function(err: Error): void {
-        this.absoluteMove({x: 0.5, y: 0, zoom: 0.5});
-        this.getStreamUri({protocol: "HTTP"}, function(err: Error, streamInfo): void {
-          streamURI.value = streamInfo.uri;
-        });
-      });
+      new Cam(
+        {
+          hostname: cameraIP.value,
+          username: "",
+          password: "",
+        },
+        function(err) {
+          if (err) {
+            console.error(err);
+          } else {
+            this.absoluteMove({ x: 0.5, y: 0, zoom: 0.5 });
+            this.getStreamUri(
+              { protocol: "HTTP" },
+              function (err: Error, streamInfo): void {
+                streamURI.value = streamInfo.uri;
+              }
+            );
+          }
+        }
+      );
 
       // Display the URI on the app
       showURI.value = true;
-    }
+    };
 
     return {
       cameraIP,
       showURI,
       streamURI,
       connectToCamera,
-    }
-  }
-})
-
+    };
+  },
+});
 </script>
 
 <style lang="scss">
