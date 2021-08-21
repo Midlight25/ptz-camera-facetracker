@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "strict": true,
+    // "strict": true,
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
@@ -20,13 +20,17 @@
     "paths": {
       "@/*": [
         "src/*"
-      ]
+      ],
+      "@components/*": [
+        "src/components/*"
+      ],
     },
     "lib": [
       "esnext",
       "dom",
       "dom.iterable",
-      "scripthost"
+      "scripthost",
+      "WebWorker"
     ]
   },
   "include": [
@@ -35,7 +39,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "src/types/*.d.ts"
+    "src/**/*.js"
   ],
   "exclude": [
     "node_modules"

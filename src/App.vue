@@ -22,6 +22,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { Cam } from "onvif";
+import cv from "./ts/cv";
 
 let camera: Cam;
 
