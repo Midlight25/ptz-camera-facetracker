@@ -10,7 +10,7 @@ try {
   require('electron-reloader')(module, { ignore: path.join(__dirname, '..', 'src') });
 } catch (_) { }
 
-const isDev = process.env.MODE === 'development';
+const isDev = process.env.ELECTRON_ENV === "development";
 
 // Keep a global reference of the window object. If you don't, the window will
 // be closed automatically when the JS object is garbage collected.
@@ -24,7 +24,7 @@ let win;
  */
 const createWindow = async () => {
   win = new BrowserWindow({
-    width: 800,
+    width: 800 + (isDev ? 400 : 0),
     height: 600,
     webPreferences: {
       contextIsolation: true,
