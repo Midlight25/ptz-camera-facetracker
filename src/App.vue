@@ -14,12 +14,16 @@
 
     button(@click="connectToCamera") Connect
 
+    button(@click="moveCam", v-if="showURI") Move Camera
+
   h2(v-if="showURI") {{ streamURI }}
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
 import { Cam } from "onvif";
+
+let camera: Cam;
 
 export default defineComponent({
   name: "App",
@@ -34,29 +38,44 @@ export default defineComponent({
       console.log("Connecting to Camera");
 
       // Instantiate a camera object and get it's URI for accessing the media.
-      new Cam(
+      camera = new Cam(
         {
           hostname: cameraIP.value,
           username: "",
           password: "",
         },
-        function(err) {
+        function (err) {
           if (err) {
             console.error(err);
           } else {
             this.absoluteMove({ x: 0.5, y: 0, zoom: 0.5 });
             this.getStreamUri(
-              { protocol: "HTTP" },
-              function (err: Error, streamInfo): void {
-                streamURI.value = streamInfo.uri;
+              { protocol: "RTSP" },
+              function (err, streamUriInfo): void {
+                if (err) {
+                  console.error(err);
+                } else {
+                  streamURI.value = streamUriInfo.uri;
+
+                  // Display the URI on the app
+                  showURI.value = true;
+                }
               }
             );
           }
         }
       );
+    };
 
-      // Display the URI on the app
-      showURI.value = true;
+    const moveCam = () => {
+      console.log(camera);
+      camera.connect(function (err) {
+        if (err !== null) {
+          throw err;
+        } else {
+          this.absoluteMove({ x: 0.7, y: 0.6 });
+        }
+      });
     };
 
     return {
@@ -64,13 +83,14 @@ export default defineComponent({
       showURI,
       streamURI,
       connectToCamera,
+      moveCam,
     };
   },
 });
 </script>
 
 <style lang="scss">
-#app {
+#main {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
