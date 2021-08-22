@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import { Cam } from "onvif";
 import cv from "./ts/cv";
 
@@ -79,12 +79,20 @@ export default defineComponent({
       });
     };
 
+    const loadWorker = async () => {
+      await cv.load();
+      console.log("Module Loaded");
+    }
+
+    onMounted(loadWorker);
+
     return {
       cameraIP,
       showURI,
       streamURI,
       connectToCamera,
       moveCam,
+      loadWorker
     };
   },
 });

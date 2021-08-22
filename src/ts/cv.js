@@ -31,7 +31,7 @@ class CV {
    */
   load() {
     this._status = {};
-    this.worker = new Worker("./opencv.worker.ts"); // load worker
+    this.worker = new Worker("./opencv.worker.ts", { type: "module" }); // load worker
 
     // Capture events and save [status, event] inside the _status object
     this.worker.onmessage = (e) => (this._status[e.data.msg] = ["done", e]);
